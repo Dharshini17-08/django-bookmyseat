@@ -22,6 +22,18 @@ class Theater(models.Model):
 
     def __str__(self):
         return f'{self.name} - {self.movie.name} at {self.time}'
+    
+    def get_availability_status(self):
+        total_seats = self.seats.count()
+        booked_seats = self.seats.filter(is_booked=True).count()
+        available_seats = total_seats - booked_seats
+        
+        if available_seats == 0:
+            return "Fully Booked"
+        elif available_seats <= 5:
+            return f"Only {available_seats} seats left"
+        else:
+            return "Seats Available"
 
 class Seat(models.Model):
     theater = models.ForeignKey(Theater,on_delete=models.CASCADE,related_name='seats')

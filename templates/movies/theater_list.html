@@ -1,4 +1,3 @@
-
 {% extends "users/basic.html" %} 
 {% block content %}
 <style>
@@ -132,6 +131,12 @@
     margin-bottom: 10px;
   }
 }
+
+.availability-status {
+  font-size: 12px;
+  margin-top: 5px;
+  font-weight: bold;
+}
   </style>
   
   <body>
@@ -162,6 +167,9 @@
             <a href="{% url 'book_seats' theater.id %}">
               <span>Book Now</span>
             </a>
+            <div class="availability-status {% if theater.get_availability_status == 'Fully Booked' %}text-danger{% elif 'Only' in theater.get_availability_status %}text-warning{% else %}text-success{% endif %}">
+              {{ theater.get_availability_status }}
+            </div>
           </div>
         </div>
         {% endfor %}
