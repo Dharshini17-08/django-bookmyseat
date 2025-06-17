@@ -19,6 +19,3 @@ from bookmyseat.wsgi import application
 # Export the application for Vercel
 app = application
 
-# For Vercel serverless functions
-def handler(request, context):
-    return app(request, context) 
