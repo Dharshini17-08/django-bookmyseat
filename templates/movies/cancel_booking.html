@@ -1,0 +1,124 @@
+{% extends "users/basic.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg">
+                <div class="card-header bg-warning text-dark text-center">
+                    <h3 class="mb-0">
+                        <i class="fas fa-exclamation-triangle"></i> Cancel Booking
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <div class="warning-animation">
+                            <i class="fas fa-times-circle fa-3x text-warning"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="alert alert-warning">
+                        <h5 class="alert-heading">Are you sure you want to cancel this booking?</h5>
+                        <p class="mb-0">This action cannot be undone. Your seat will be released and made available for other users.</p>
+                    </div>
+                    
+                    <div class="booking-details">
+                        <h5 class="text-center mb-4">Booking Details</h5>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="detail-item">
+                                    <strong><i class="fas fa-film"></i> Movie:</strong>
+                                    <span>{{ booking.movie.name }}</span>
+                                </div>
+                                <div class="detail-item">
+                                    <strong><i class="fas fa-building"></i> Theater:</strong>
+                                    <span>{{ booking.theater.name }}</span>
+                                </div>
+                                <div class="detail-item">
+                                    <strong><i class="fas fa-clock"></i> Show Time:</strong>
+                                    <span>{{ booking.theater.time|date:"F j, Y, g:i a" }}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="detail-item">
+                                    <strong><i class="fas fa-chair"></i> Seat Number:</strong>
+                                    <span>{{ booking.seat.seat_number }}</span>
+                                </div>
+                                <div class="detail-item">
+                                    <strong><i class="fas fa-user"></i> Booked By:</strong>
+                                    <span>{{ booking.user.username }}</span>
+                                </div>
+                                <div class="detail-item">
+                                    <strong><i class="fas fa-calendar"></i> Booked On:</strong>
+                                    <span>{{ booking.booked_at|date:"F j, Y, g:i a" }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        <form method="POST" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-lg">
+                                <i class="fas fa-trash"></i> Yes, Cancel Booking
+                            </button>
+                        </form>
+                        <a href="{% url 'profile' %}" class="btn btn-secondary btn-lg ml-2">
+                            <i class="fas fa-times"></i> No, Keep Booking
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .warning-animation {
+        animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+    
+    .detail-item {
+        margin-bottom: 15px;
+        padding: 10px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        border-left: 4px solid #ffc107;
+    }
+    
+    .detail-item strong {
+        color: #495057;
+        margin-right: 10px;
+    }
+    
+    .detail-item span {
+        color: #6c757d;
+    }
+    
+    .btn-lg {
+        padding: 12px 24px;
+        font-size: 16px;
+    }
+    
+    @media (max-width: 768px) {
+        .btn-lg {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+        }
+    }
+</style>
+{% endblock %} 

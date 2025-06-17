@@ -31,7 +31,7 @@ class Theater(models.Model):
         if available_seats == 0:
             return "Fully Booked"
         elif available_seats <= 5:
-            return f"Only {available_seats} seats left"
+            return f"Only {available_seats} seat{'s' if available_seats > 1 else ''} left"
         else:
             return "Seats Available"
 
