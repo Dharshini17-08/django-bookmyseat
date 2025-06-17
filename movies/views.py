@@ -17,8 +17,10 @@ def movie_list(request):
 
 def theater_list(request,movie_id):
     movie = get_object_or_404(Movie,id=movie_id)
-    theater=Theater.objects.filter(movie=movie)
-    return render(request,'movies/theater_list.html',{'movie':movie,'theaters':theater})
+    theaters = Theater.objects.filter(movie=movie)
+    for theater in theaters:
+        theater.available_seats = theater.seats.filter(is_booked=False).count()
+    return render(request,'movies/theater_list.html',{'movie':movie,'theaters':theaters})
 
 @login_required(login_url='/login/')
 def book_seats(request,theater_id):

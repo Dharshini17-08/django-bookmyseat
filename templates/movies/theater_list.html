@@ -176,7 +176,7 @@
                   {{ theater.get_availability_status }}
                 </span>
                 <div class="text-secondary mt-1" style="font-size: 13px;">
-                  Available Seats: {{ theater.seats.filter(is_booked=False).count }}
+                  Available Seats: {{ theater.available_seats }}
                 </div>
               </div>
             </div>
