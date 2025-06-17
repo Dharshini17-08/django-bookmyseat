@@ -20,7 +20,13 @@
         }
     ],
     "env": {
-        "PYTHONPATH": "."
+        "PYTHONPATH": ".",
+        "DEBUG": "False",
+        "ALLOWED_HOSTS": ".vercel.app,.now.sh",
+        "DATABASE_URL": "postgresql://django_bookmyseat_trqs_user:wT6jfBNgNFPdhAlDvnKgmsZzwGmDnRIA@dpg-d178o57diees73du55a0-a.oregon-postgres.render.com/django_bookmyseat_trqs",
+        "CLOUDINARY_CLOUD_NAME": "dqyqwmfak",
+        "CLOUDINARY_API_KEY": "484634956585179",
+        "CLOUDINARY_API_SECRET": "OdUQF7k_oqtqMddBGn2gpVFDjsk"
     },
     "buildCommand": "python manage.py collectstatic --noinput"
 } 

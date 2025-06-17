@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-3-+%y!&_m@357@%a513_o
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1', 'localhost', '.now.sh', '.vercel.app']
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '.vercel.app,127.0.0.1,localhost,.now.sh').split(',')
 
 
 # Application definition
@@ -149,8 +149,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Cloudinary configuration for media file storage
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dqyqwmfak',
-    'API_KEY': '512981985793428',
-    'API_SECRET': 'p-pZj551eOtys-h7H7m0odNi57M'
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME', 'dqyqwmfak'),
+    'API_KEY': os.environ.get('CLOUDINARY_API_KEY', '512981985793428'),
+    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET', 'p-pZj551eOtys-h7H7m0odNi57M')
 }
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
